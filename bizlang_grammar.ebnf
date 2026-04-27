@@ -1,0 +1,28 @@
+command        ::= load_clause { "AND" action_clause }
+
+load_clause    ::= "LOAD" filename
+
+action_clause  ::= filter_clause
+                 | aggregate_clause
+                 | plot_clause
+                 | export_clause
+
+filter_clause  ::= "FILTER" identifier operator value
+
+aggregate_clause ::= agg_func [ identifier ] [ "BY" identifier ]
+
+agg_func       ::= "SUM" | "AVG" | "COUNT" | "MIN" | "MAX"
+
+plot_clause    ::= "PLOT" plot_type
+
+plot_type      ::= "BAR" | "LINE"
+
+export_clause  ::= "EXPORT" filename
+
+operator       ::= "=" | ">" | "<"
+
+filename       ::= identifier
+identifier     ::= letter { letter | digit | "_" | "." }
+value          ::= number | string
+number         ::= digit { digit } [ "." digit { digit } ]
+string         ::= '"' { character } '"'
