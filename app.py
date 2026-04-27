@@ -12,18 +12,19 @@ st.set_page_config(page_title="BizLang", layout="wide")
 
 st.title("BizLang: Business Analytics Command-to-Action DSL")
 st.write(
-    "BizLang translates simple business analytics commands into executable Python/Pandas analysis, "
-    "tables, charts, and exported CSV files."
+    "BizLang translates simple business analytics commands into executable Python/Pandas workflows. "
+    "This version uses a 1,000-row enterprise-style sales dataset with revenue, cost, profit, regions, states, customers, products, and margins."
 )
 
 st.subheader("Example Commands")
 st.code(
     f'''LOAD {FILE_NAME} AND SUM revenue BY month AND PLOT BAR
-LOAD {FILE_NAME} AND FILTER region = "South" AND SUM revenue BY month
-LOAD {FILE_NAME} AND AVG profit BY category AND PLOT BAR
-LOAD {FILE_NAME} AND FILTER revenue > 1500 AND COUNT BY region
-LOAD {FILE_NAME} AND MAX revenue BY region
-LOAD {FILE_NAME} AND SUM revenue BY month AND EXPORT summary.csv'''
+LOAD {FILE_NAME} AND SUM profit BY region AND PLOT BAR
+LOAD {FILE_NAME} AND AVG margin_pct BY category AND PLOT BAR
+LOAD {FILE_NAME} AND SUM revenue BY state AND PLOT BAR
+LOAD {FILE_NAME} AND FILTER category = "Electronics" AND SUM revenue BY month AND PLOT BAR
+LOAD {FILE_NAME} AND COUNT BY region
+LOAD {FILE_NAME} AND MAX profit BY state'''
 )
 
 command = st.text_input(
